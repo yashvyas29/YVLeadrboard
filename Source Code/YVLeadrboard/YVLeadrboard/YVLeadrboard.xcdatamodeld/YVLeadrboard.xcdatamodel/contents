@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="17B48" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
+        <attribute name="createdOn" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dbID" optional="YES" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastUpdatedOn" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="places" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Place" inverseName="category" inverseEntity="Place" syncable="YES"/>
+        <relationship name="status" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Status" inverseName="categories" inverseEntity="Status" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="dbID"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Location" representedClassName="Location" syncable="YES" codeGenerationType="class">
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="continent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdOn" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dbID" optional="YES" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastUpdatedOn" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zip" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="place" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="location" inverseEntity="Place" syncable="YES"/>
+        <relationship name="status" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Status" inverseName="locations" inverseEntity="Status" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="location" inverseEntity="User" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="dbID"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Place" representedClassName="Place" syncable="YES" codeGenerationType="class">
+        <attribute name="createdOn" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dbID" optional="YES" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastUpdatedOn" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="places" inverseEntity="Category" syncable="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="place" inverseEntity="Location" syncable="YES"/>
+        <relationship name="priceRange" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PriceRange" inverseName="places" inverseEntity="PriceRange" syncable="YES"/>
+        <relationship name="recommendations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="recommendedPlaces" inverseEntity="User" syncable="YES"/>
+        <relationship name="reviewers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="reviewedPlaces" inverseEntity="User" syncable="YES"/>
+        <relationship name="status" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Status" inverseName="places" inverseEntity="Status" syncable="YES"/>
+        <relationship name="style" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Style" inverseName="places" inverseEntity="Style" syncable="YES"/>
+        <relationship name="userRanks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PlaceUserRank" inverseName="place" inverseEntity="PlaceUserRank" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="dbID"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="PlaceUserRank" representedClassName="PlaceUserRank" syncable="YES" codeGenerationType="class">
+        <attribute name="createdOn" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dbID" optional="YES" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastUpdatedOn" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="rank" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="place" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="userRanks" inverseEntity="Place" syncable="YES"/>
+        <relationship name="status" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Status" inverseName="placeUserRanks" inverseEntity="Status" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="placeUserRanks" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="PriceRange" representedClassName="PriceRange" syncable="YES" codeGenerationType="class">
+        <attribute name="createdOn" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dbID" optional="YES" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastUpdatedOn" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="places" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Place" inverseName="priceRange" inverseEntity="Place" syncable="YES"/>
+        <relationship name="status" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Status" inverseName="priceRanges" inverseEntity="Status" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="dbID"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Status" representedClassName="Status" syncable="YES" codeGenerationType="class">
+        <attribute name="createdOn" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dbID" optional="YES" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastUpdatedOn" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="categories" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="status" inverseEntity="Category" syncable="YES"/>
+        <relationship name="locations" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="status" inverseEntity="Location" syncable="YES"/>
+        <relationship name="places" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="status" inverseEntity="Place" syncable="YES"/>
+        <relationship name="placeUserRanks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PlaceUserRank" inverseName="status" inverseEntity="PlaceUserRank" syncable="YES"/>
+        <relationship name="priceRanges" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PriceRange" inverseName="status" inverseEntity="PriceRange" syncable="YES"/>
+        <relationship name="styles" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Style" inverseName="status" inverseEntity="Style" syncable="YES"/>
+        <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="status" inverseEntity="User" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="dbID"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Style" representedClassName="Style" syncable="YES" codeGenerationType="class">
+        <attribute name="createdOn" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dbID" optional="YES" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastUpdatedOn" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="places" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Place" inverseName="style" inverseEntity="Place" syncable="YES"/>
+        <relationship name="status" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Status" inverseName="styles" inverseEntity="Status" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="dbID"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+        <attribute name="accessToken" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdOn" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dbID" optional="YES" attributeType="Integer 64" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" attributeType="String" syncable="YES"/>
+        <attribute name="fullName" transient="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isVerified" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastUpdatedOn" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="middleName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="socialMediaID" attributeType="String" syncable="YES"/>
+        <relationship name="friends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="friends" inverseEntity="User" syncable="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="user" inverseEntity="Location" syncable="YES"/>
+        <relationship name="placeUserRanks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PlaceUserRank" inverseName="user" inverseEntity="PlaceUserRank" syncable="YES"/>
+        <relationship name="recommendedPlaces" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Place" inverseName="recommendations" inverseEntity="Place" syncable="YES"/>
+        <relationship name="reviewedPlaces" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Place" inverseName="reviewers" inverseEntity="Place" syncable="YES"/>
+        <relationship name="status" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Status" inverseName="users" inverseEntity="Status" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="socialMediaID"/>
+            </uniquenessConstraint>
+            <uniquenessConstraint>
+                <constraint value="dbID"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <elements>
+        <element name="Category" positionX="-173" positionY="-279" width="128" height="133"/>
+        <element name="Location" positionX="-414" positionY="-306" width="128" height="268"/>
+        <element name="Place" positionX="-495" positionY="54" width="128" height="223"/>
+        <element name="PriceRange" positionX="-101" positionY="-34" width="128" height="133"/>
+        <element name="Status" positionX="70" positionY="-243" width="128" height="208"/>
+        <element name="Style" positionX="72" positionY="2" width="128" height="133"/>
+        <element name="User" positionX="-693" positionY="-279" width="128" height="313"/>
+        <element name="PlaceUserRank" positionX="-101" positionY="126" width="128" height="148"/>
+    </elements>
+</model>
