@@ -22,3 +22,7 @@ Tasks to do:
 NFR’s.
 4. Solutions approach for leaderboard & ranking features
 5. Architectural design views based on both SOA & Microservices principles
+
+# Note: Currently YVLeadrboard Facebook App is in Sandbox Mode. So, you can use the demo credentials as:
+# Email: yash_ndskplc_vyas@tfbnw.net
+# Password: 1234567A
